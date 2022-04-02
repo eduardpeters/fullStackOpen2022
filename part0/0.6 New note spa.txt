@@ -1,0 +1,19 @@
+title 0.6 New note spa
+
+note over Browser: 
+Form is submitted, js-code event
+handler prevents default behaviour
+New note is created with form text and timestamp
+New note is added to listwith notes.push(note)
+Note list is rendered again with redrawNotes()
+Funtion sendToServer(note) is executed
+end note
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over Server
+Server receives note as JSON-string
+Adds it to data.json
+end note
+
+Server-->Browser: Satus code 201: {"message":"note created"}
