@@ -6,6 +6,8 @@ part1/courseinfo/.gitignore
 part1/unicafe/.gitignore
 part2/courseinfo2/.gitignore
 part2/courseinfo2/src/App1course.js
+part2/phonebook/.gitignore
+part2/phonebook/AppStandalone.js
 
 # dependencies
 /node_modules

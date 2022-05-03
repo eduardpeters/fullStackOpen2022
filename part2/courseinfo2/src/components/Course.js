@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Total = ({ parts }) => {
     let initialValue = 0
     const total = parts.reduce((previousValue, currentValue) => {
