@@ -1,15 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# from the different parts
-part1/anecdotes/.gitignore
-part1/courseinfo/.gitignore
-part1/unicafe/.gitignore
-part2/courseinfo2/.gitignore
-part2/courseinfo2/src/App1course.js
-part2/phonebook/.gitignore
-part2/phonebook/AppStandalone.js
-part2/countries/.env
-
 # dependencies
 /node_modules
 /.pnp
