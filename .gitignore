@@ -9,6 +9,7 @@ part2/courseinfo2/src/App1course.js
 part2/phonebook/.gitignore
 part2/phonebook/AppStandalone.js
 part2/countries/.env
+part3/mongophonebook/node_modules
 
 # dependencies
 /node_modules
