@@ -4,21 +4,23 @@
   "description": "fullStackOpen Part 4 Exercises",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest --verbose",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "test": "NODE_ENV=test jest --verbose --runInBand --forceExit",
     "lint": "eslint ."
   },
   "author": "Eduard Peters",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.16.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
     "jest": "^28.1.0",
     "lodash": "^4.17.21",
     "mongoose": "^6.3.4"
