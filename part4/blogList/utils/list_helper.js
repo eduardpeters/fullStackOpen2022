@@ -1,8 +1,7 @@
-const { indexOf } = require('lodash')
 const lodash = require('lodash')
 
 const dummy = (blogs) => {
-    return 1
+    return 1 + blogs.length
 }
 
 const totalLikes = (blogs) => {
@@ -11,8 +10,8 @@ const totalLikes = (blogs) => {
     }
 
     return blogs.length === 0
-    ? 0
-    : blogs.reduce(reducer, 0)
+        ? 0
+        : blogs.reduce(reducer, 0)
 }
 
 const favoriteBlog = (blogs) => {
@@ -36,7 +35,7 @@ const favoriteBlog = (blogs) => {
     }
 }
 // Solution 1, using lodash groupBy
-/*  
+/*
 const mostBlogs = (blogs) => {
     if (blogs.length === 0) {
         return 0
@@ -80,7 +79,7 @@ const mostLikes = (blogs) => {
     }
 
     const authorBlogs = lodash.groupBy(blogs,(o) => o.author)
-    let maxAuthor = ""
+    let maxAuthor = ''
     let maxLikes = 0
     let authorLikes = 0
     Object.entries(authorBlogs).forEach(item => {

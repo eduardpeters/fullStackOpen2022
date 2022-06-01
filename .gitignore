@@ -10,6 +10,12 @@ part2/phonebook/.gitignore
 part2/phonebook/AppStandalone.js
 part2/countries/.env
 part3/mongophonebook/node_modules
+part4/blogList/.env
+part4/blogList/.eslintignore
+part4/blogList/.eslintrc.js
+part4/blogList/node_modules
+part4/blogList/requests
+
 
 # dependencies
 /node_modules

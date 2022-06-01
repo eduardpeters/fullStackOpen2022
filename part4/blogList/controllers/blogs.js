@@ -1,7 +1,6 @@
-const jwt = require('jsonwebtoken')
+const middleware = require('../utils/middleware')
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
-const User = require('../models/user')
 
 blogsRouter.get('/', async (request, response) => {
     const blogs = await Blog
@@ -12,22 +11,16 @@ blogsRouter.get('/', async (request, response) => {
 blogsRouter.get('/:id', async (request, response) => {
     const blog = await Blog
         .findById(request.params.id).populate('user', { username: 1, name: 1 })
-        if (blog) {
-            response.json(blog)
-        } else {
-            response.status(404).end()
-        }
+    if (blog) {
+        response.json(blog)
+    } else {
+        response.status(404).end()
+    }
 })
 
-blogsRouter.post('/', async (request, response) => {
+blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
     const body = request.body
-
-    const decodedToken = jwt.verify(request.token, process.env.SECRET)
-    if (!decodedToken.id) {
-        return response.status(401).json({ error: 'token missing or invalid' })
-    }
-
-    const user = await User.findById(decodedToken.id)
+    const user = request.user
 
     const blog = new Blog({
         title: body.title,
@@ -47,24 +40,19 @@ blogsRouter.put('/:id', async (request, response) => {
     const { title, author, url, likes } = request.body
     const updatedBlog = await Blog.findByIdAndUpdate(
         request.params.id,
-        { title, author, url, likes},
+        { title, author, url, likes },
         { new: true, runValidators: true, context: 'query' }
     )
     response.json(updatedBlog)
 })
 
-blogsRouter.delete('/:id', async (request, response) => {
-    const decodedToken = jwt.verify(request.token, process.env.SECRET)
-    if (!decodedToken.id) {
-        return response.status(401).json({ error: 'token missing or invalid' })
-    }
+blogsRouter.delete('/:id', middleware.userExtractor, async (request, response) => {
     const blog = await Blog.findById(request.params.id)
+    const user = request.user
 
-    if (blog.user.toString() !== decodedToken.id) {
+    if (blog.user.toString() !== user.id) {
         return response.status(401).json({ error: 'wrong user' })
     }
-
-    const user = await User.findById(decodedToken.id)
 
     await Blog.findByIdAndRemove(request.params.id)
     user.blogs = user.blogs.filter(u => u !== request.params.id)
