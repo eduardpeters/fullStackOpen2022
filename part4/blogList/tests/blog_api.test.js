@@ -209,7 +209,8 @@ describe('updating likes on a blog', () => {
             title: blogToUpdate.title,
             author: blogToUpdate.author,
             url: blogToUpdate.url,
-            likes: blogToUpdate.likes + 10,
+            likes: blogToUpdate.likes + 1,
+            user: blogToUpdate.user,
         }
 
         await api
@@ -218,7 +219,7 @@ describe('updating likes on a blog', () => {
             .expect(200)
 
         const blogsAtEnd = await helper.blogsInDb()
-        expect(blogsAtEnd[0].likes).toBe(helper.initialBlogs[0].likes + 10)
+        expect(blogsAtEnd[0].likes).toBe(helper.initialBlogs[0].likes + 1)
     })
 })
 
