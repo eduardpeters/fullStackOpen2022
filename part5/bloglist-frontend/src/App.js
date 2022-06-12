@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
-import Toggable from './components/Toggable'
+import Togglable from './components/Togglable'
 import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
@@ -12,12 +12,12 @@ const App = () => {
     const [user, setUser] = useState(null)
     const [notification, setNotification] = useState(null)
     const blogFormRef = useRef()
-/*
-    useEffect( async () => {
-        const blogs = await blogService.getAll()
-        setBlogs(blogs)
-    }, [])
-*/
+    /*
+        useEffect( async () => {
+            const blogs = await blogService.getAll()
+            setBlogs(blogs)
+        }, [])
+    */
     useEffect(() => {
         const getBlogs = async () => {
             const initialBlogs = await blogService.getAll()
@@ -75,14 +75,14 @@ const App = () => {
 
     const updateBlog = async (blogObject) => {
         const updatedBlog = await blogService.update(blogObject)
-        
+
         setBlogs(blogs.map(blog => blog.id !== updatedBlog.id ? blog : updatedBlog))
 
         notify(`Liked blog ${updatedBlog.title} by ${updatedBlog.author}`)
     }
 
     const removeBlog = async (blogToRemove) => {
-        const response = await blogService.remove(blogToRemove.id)
+        await blogService.remove(blogToRemove.id)
 
         setBlogs(blogs.filter(blog => blog.id !== blogToRemove.id))
 
@@ -105,22 +105,22 @@ const App = () => {
             <h1>blogList</h1>
             <Notification notification={notification} />
             <p>{user.name} logged in <button onClick={handleLogout}>logout</button></p>
-            <Toggable buttonLabel='new blog' ref={blogFormRef}>
+            <Togglable buttonLabel='new blog' ref={blogFormRef}>
                 <h2>create new blog</h2>
                 <BlogForm addBlog={addBlog} />
-            </Toggable>
+            </Togglable>
             <h2>posted blogs</h2>
             {blogs
                 .sort((a, b) => b.likes - a.likes)
                 .map(blog =>
-                <Blog
-                    key={blog.id}
-                    blog={blog} 
-                    updateBlog={updateBlog}
-                    username={user.username}
-                    removeBlog={removeBlog}
-                />
-            )}
+                    <Blog
+                        key={blog.id}
+                        blog={blog}
+                        updateBlog={updateBlog}
+                        username={user.username}
+                        removeBlog={removeBlog}
+                    />
+                )}
         </div>
     )
 }
