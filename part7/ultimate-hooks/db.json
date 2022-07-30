@@ -1,0 +1,42 @@
+{
+  "notes": [
+    {
+      "content": "custom-hooks are great",
+      "id": 1
+    },
+    {
+      "content": "the best featrure ever <3",
+      "id": 2
+    },
+    {
+      "content": "async and await",
+      "id": 3
+    },
+    {
+      "content": "one more note",
+      "id": 4
+    }
+  ],
+  "persons": [
+    {
+      "name": "mluukkai",
+      "number": "040-5483923",
+      "id": 1
+    },
+    {
+      "name": "kaltsoon",
+      "number": "045-2323456",
+      "id": 2
+    },
+    {
+      "name": "eduard0",
+      "number": "1230986",
+      "id": 3
+    },
+    {
+      "name": "minum",
+      "number": "837464",
+      "id": 4
+    }
+  ]
+}
